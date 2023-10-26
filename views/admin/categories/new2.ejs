@@ -1,0 +1,19 @@
+<div class="modal fade" id="categoriesModal" tabindex="-1" aria-labelledby="categoriesModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="categoriesModalLabel">Cadastro de Categoria</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/categories/save" >
+                    <input class="form-control mb-3" type="text" name="title" placeholder="Defina a categoria...">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button class="btn btn-lg bg-dark text-light">Cadastrar</button>
+            </div>
+        </div>
+    </div>
+</div>

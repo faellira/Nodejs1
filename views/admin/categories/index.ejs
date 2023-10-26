@@ -1,0 +1,56 @@
+<%- include ('../../partials/header.ejs')%>
+<%- include ('../../partials/navbar.ejs')%>
+<div class="container">
+    <div class="card mt-4">
+        <div class="card-header d-flex justify-content-between">
+            <h2>Categories</h2>
+            <a href="/admin/categories/new" class="btn btn-lg btn-primary">Criar Categoria</a>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Slug</th>
+                        <th>Creation</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                <% categories.forEach((categories)=>{ %>
+                <tr>
+                    <th><%= categories.id %></th>
+                    <th><%= categories.title %></th>
+                    <th><%= categories.slug %></th>
+                    <th><%= categories.createdAt.toLocaleString('pt-br', {day: 'numeric', month: 'long', year: 'numeric',hour: "numeric", minute: "numeric", second : "numeric"})%></th>
+                    <th>
+                        <button class="btn btn-sm btn-warning">Editar</button>
+                        <form action="/categories/delete" method="POST" class="d-inline" onsubmit="SubmitModal(event, this)">
+                            <input type="hidden" name="id" value="<%= categories.id %>"></input>
+                            <button class="btn btn-sm btn-danger">Excluir</button>
+                        </form>
+                    </th>
+                </tr>
+                <%})%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
+<%- include ('../../partials/footer.ejs')%>
+
+<script>
+    
+    function SubmitModal (event, form){
+        event.preventDefault();
+        let decision = confirm("Você tem certeza que deseja excluir a categoria?");
+
+        if(decision) {
+            form.submit()
+        }
+
+    }
+</script>
