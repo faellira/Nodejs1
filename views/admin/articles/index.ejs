@@ -3,15 +3,16 @@
 <div class="container">
     <div class="card mt-4">
         <div class="card-header d-flex justify-content-between">
-            <h2>Categories</h2>
-            <a href="/admin/categories/new" class="btn btn-lg btn-primary">Criar Categoria</a>
+            <h2>Articles</h2>
+            <a href="/admin/articles/new" class="btn btn-lg btn-primary">Criar Artigo</a>
         </div>
         <div class="card-body">
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Title</th>
+                        <th>id</th>
+                        <th>title</th>
+                        <th>Category</th>
                         <th>Slug</th>
                         <th>Creation</th>
                         <th>Actions</th>
@@ -19,16 +20,17 @@
                 </thead>
                 <tbody>
 
-                <% categories.forEach((categories)=>{ %>
+                <% articles.forEach((articles)=>{ %>
                 <tr>
-                    <th><%= categories.id %></th>
-                    <th><%= categories.title %></th>
-                    <th><%= categories.slug %></th>
-                    <th><%= categories.createdAt.toLocaleString('pt-br', {day: 'numeric', month: 'long', year: 'numeric',hour: "numeric", minute: "numeric", second : "numeric"})%></th>
+                    <th><%= articles.id %></th>
+                    <th><%= articles.title %></th>
+                    <th><%= articles.category.slug %></th>
+                    <th><%= articles.slug %></th>
+                    <th><%= articles.createdAt.toLocaleString('pt-br', {day: 'numeric', month: 'long', year: 'numeric',hour: "numeric", minute: "numeric", second : "numeric"})%></th>
                     <th>
-                        <a class="btn btn-sm btn-warning" href="/admin/categories/edit/<%= categories.id %>">Editar</a>
-                        <form action="/categories/delete" method="POST" class="d-inline" onsubmit="SubmitModal(event, this)">
-                            <input type="hidden" name="id" value="<%= categories.id %>">
+                        <a class="btn btn-sm btn-warning" href="/">Editar</a>
+                        <form action="/" method="POST" class="d-inline" onsubmit="SubmitModal(event, this)">
+                            <input type="hidden" name="id" value="">
                             <button class="btn btn-sm btn-danger">Excluir</button>
                         </form>
                     </th>
