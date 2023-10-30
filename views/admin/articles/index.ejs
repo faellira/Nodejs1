@@ -24,13 +24,13 @@
                 <tr>
                     <th><%= articles.id %></th>
                     <th><%= articles.title %></th>
-                    <th><%= articles.category.slug %></th>
+                    <th><%= articles.category.slug%></th>
                     <th><%= articles.slug %></th>
                     <th><%= articles.createdAt.toLocaleString('pt-br', {day: 'numeric', month: 'long', year: 'numeric',hour: "numeric", minute: "numeric", second : "numeric"})%></th>
                     <th>
-                        <a class="btn btn-sm btn-warning" href="/">Editar</a>
-                        <form action="/" method="POST" class="d-inline" onsubmit="SubmitModal(event, this)">
-                            <input type="hidden" name="id" value="">
+                        <a class="btn btn-sm btn-warning" href="/admin/articles/edit/<%= articles.id%>">Editar</a>
+                        <form action="/articles/delete" method="POST" class="d-inline" onsubmit="SubmitModal(event, this)">
+                            <input type="hidden" name="id" value="<%= articles.id%>">
                             <button class="btn btn-sm btn-danger">Excluir</button>
                         </form>
                     </th>
@@ -48,7 +48,7 @@
     
     function SubmitModal (event, form){
         event.preventDefault();
-        let decision = confirm("Você tem certeza que deseja excluir a categoria?");
+        let decision = confirm("Você tem certeza que deseja excluir o Artigo?");
 
         if(decision) {
             form.submit()
