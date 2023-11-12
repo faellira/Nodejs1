@@ -31,7 +31,9 @@ articlesController);
 app.get('/', (req, res) => {
     Article.findAll({
         order: [['id', 'DESC']],
-        include :[{model : Category}]}).then(articles =>{
+        include :[{model : Category}],
+        limit: 4}
+        ).then(articles =>{
             Category.findAll().then(categories => {
                 res.render('index', {articles: articles, categories : categories});
             })
@@ -67,7 +69,9 @@ app.get('/category/:slug', (req, res) => {
         include: [{model : Article}]
     }).then( category => {
         if(category != undefined){
-        Category.findAll().then(categories => {
+        Category.findAll({
+            include: [{model : Article}]
+        }).then(categories => {
             res.render('index', {articles : category.articles, categories : categories});
         })
         } else{

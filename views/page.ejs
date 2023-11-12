@@ -2,13 +2,13 @@
 <body>
 <%- include ('partials/homenavbar.ejs') %>
     <div class="container-xxl mt-4">
-        <h1 class="fst-italic">Welcome to home page</h1>
-        <p class="fst-italic">This is a simple blog about development and IT</p> 
+        <h1 class="fst-italic">Welcome to Devlog</h1>
+        <p class="fst-italic">This is a simple blog about development and IT</p>    
     </div>
     
     <div class="container mt-4">
         <h2 class="mb-3">Articles</h2>
-        <% articles.forEach( (article) =>{%>
+        <% result.articles.rows.forEach( article =>{%>
             <div class="card mb-2">
                 <div class="card-header">
                     <h3 class=" d-flex justify-content-between align-items-center"><%= article.title %><span class="badge rounded-pill bg-primary text-bg-sucess fs-6 justify-content-end"><%= article.category.title %></span></h3>
@@ -19,19 +19,28 @@
                 </div>
             </div>
         <%}) %>
+        
         <div class="row float-end">
             <div class="col col-12 ">
-                <nav aria-label="Page navigation">
+                <nav aria-label="Page navigation example">
                     <ul class="pagination">
                     <li class="page-item">
-                        <a class="page-link disabled" href="/" aria-label="Previous" >
+                        <% if(result.page != 1 && result.page >2 ){%>
+                        <a class="page-link" href="/articles/page/<%= result.page -1%>" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                         </a>
+                        <%} else{%>
+                            <a class="page-link" href="/" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                </a>
+                        <% }%>
                     </li>
                     <li class="page-item ms-2">
-                        <a class="page-link" href="/articles/page/2" aria-label="Next">
+                        <% if(result.next){%>
+                        <a class="page-link" href="/articles/page/<%= result.page +1%>" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                         </a>
+                        <% }%>
                     </li>
                     </ul>
                 </nav>

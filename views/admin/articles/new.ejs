@@ -3,19 +3,19 @@
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h2>Novo Artigo</h2>
+            <h2>New Article</h2>
         </div>
         <div class="card-body">
             <form method="post" action="/articles/save" >
-                <input class="form-control mb-3" type="text" name="title" placeholder="Defina o título do artigo...">
+                <input class="form-control mb-3" type="text" name="title" placeholder="Defina o título do artigo..." required>
                 <select name="selectCategories" id="selectCategories" class="form-select">
-                    <option value="select" disabled selected>Selecione uma Categoria...</option>
+                    <option value="select" disabled selected>Select one category...</option>
                     <%categories.forEach((categories)=>{%>
                         <option value="<%= categories.id %>"><%= categories.title %></option>
                     <%})%>
                 </select>
                 <textarea name="articleBody" id="articleBody" class="form-control mb-3" placeholder="Descreva o artigo..."></textarea>
-                <button class="btn btn-lg bg-dark text-light">Cadastrar</button>
+                <button class="btn btn-lg bg-dark text-light">Create</button>
             </form> 
         </div>
     </div>

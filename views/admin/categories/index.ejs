@@ -4,7 +4,7 @@
     <div class="card mt-4">
         <div class="card-header d-flex justify-content-between">
             <h2>Categories</h2>
-            <a href="/admin/categories/new" class="btn btn-lg btn-primary">Criar Categoria</a>
+            <a href="/admin/categories/new" class="btn btn-lg btn-primary">Create category</a>
         </div>
         <div class="card-body">
             <table class="table table-bordered">
@@ -26,10 +26,10 @@
                     <th><%= categories.slug %></th>
                     <th><%= categories.createdAt.toLocaleString('pt-br', {day: 'numeric', month: 'long', year: 'numeric',hour: "numeric", minute: "numeric", second : "numeric"})%></th>
                     <th>
-                        <a class="btn btn-sm btn-warning" href="/admin/categories/edit/<%= categories.id %>">Editar</a>
+                        <a class="btn btn-sm btn-warning" href="/admin/categories/edit/<%= categories.id %>">Edit</a>
                         <form action="/categories/delete" method="POST" class="d-inline" onsubmit="SubmitModal(event, this)">
                             <input type="hidden" name="id" value="<%= categories.id %>">
-                            <button class="btn btn-sm btn-danger">Excluir</button>
+                            <button class="btn btn-sm btn-danger">Delete</button>
                         </form>
                     </th>
                 </tr>

@@ -3,20 +3,23 @@
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h2>Edição de Artigo</h2>
+            <h2>Article change</h2>
         </div>
         <div class="card-body">
             <form method="post" action="/articles/update">
                 <input type="hidden" name="id" value="<%= article.id %>">
                 <input class="form-control mb-3" type="text" name="title" value="<%= article.title %>">
-                <select name="selectCategories" id="selectCategories" class="form-select">
-                    <option value="<%= article.category.id %>"selected><%= article.category.title%></option>
+                <select name="selectCategories" id="selectCategories" class="form-select mb-3">
                     <% categories.forEach((categories)=>{%>
-                        <option value="<%= categories.id %>"><%= categories.title %></option>
+                        <% if(categories.id == article.category.id){%>
+                            <option value="<%= article.category.id %>"selected><%= article.category.title%></option>
+                        <%} else {%>
+                            <option value="<%= categories.id %>"><%= categories.title %></option>
+                            <% }%>
                     <%})%>
                 </select>         
                 <textarea name="articleBody" id="articleBody" class="form-control mb-3" placeholder="Descreva o artigo..."><%= article.body%></textarea>
-                <button class="btn btn-lg bg-dark text-light">Atualizar</button>
+                <button class="btn btn-lg bg-dark text-light">Update</button>
             </form>
         </div>
     </div>
