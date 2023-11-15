@@ -1,12 +1,16 @@
 const express = require('express');
 const app = express();
 const BodyParser = require('body-parser');
+const session = require('express-session');
 const connection = require('./database/database');
+
 const categoriesController = require('./categories/CategoriesController');
 const articlesController = require('./articles/ArticlesController');
+const UsersController = require('./users/UsersController');
 
 const Category = require('./categories/Category');
 const Article = require('./articles/Article');
+const User = require('./users/User');
 
 //Database connection
 connection.
@@ -19,6 +23,12 @@ authenticate()
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
+app.use(session({
+    secret: 'dlofngpousjfpdfa',
+    cookie: {maxAge: 30000000}
+    })
+);
+
 //body parser for forms
 app.use(BodyParser.urlencoded({ extended:false }));
 app.use(BodyParser.json());
@@ -26,7 +36,9 @@ app.use(BodyParser.json());
 //Controller of routes for pages
 app.use('/', 
 categoriesController,
-articlesController);
+articlesController,
+UsersController,);
+
 
 app.get('/', (req, res) => {
     Article.findAll({

@@ -2,12 +2,17 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="/">{.Devlog}</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <% categories.forEach((category) =>{%>
-                <li class="nav-item">
-                    <a href="/category/<%= category.slug %>" class="nav-link"><%= category.title %></a></li>
-            <% })%>
-        </ul>
+            <div class="dropdown ">
+                <a class="btn btn-none border-0 text-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Categories
+                </a>
+            <ul class="dropdown-menu">
+                <% categories.forEach((category) =>{%>
+                    <li>
+                        <a href="/category/<%= category.slug %>" class="dropdown-item"><%= category.title %></a></li>
+                <% })%>
+            </ul>
+            </div>
         </div>
     </div>
     </nav>

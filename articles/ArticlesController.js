@@ -3,14 +3,15 @@ const router = express.Router();
 const Category = require('../categories/Category');
 const Article = require('../articles/Article');
 const slugify = require('slugify');
+const adminAuth = require('../middlewares/adminAuth');
 
-router.get('/admin/articles', (req, res) =>{
+router.get('/admin/articles', adminAuth, (req, res) =>{
     Article.findAll({include: [{model: Category}]}).then(articles => {
         res.render('admin/articles/index', {articles : articles})
     }); 
 })
 
-router.get('/admin/articles/new', (req, res) => {
+router.get('/admin/articles/new', adminAuth, (req, res) => {
     Category.findAll().then(categories =>{
         res.render('admin/articles/new', {categories : categories})
     })
@@ -32,7 +33,7 @@ router.post('/articles/save', (req, res) =>{
         });
 })
 
-router.post('/articles/delete', (req, res) =>{
+router.post('/articles/delete',  (req, res) =>{
     let id = req.body.id;
 
     if(id != undefined) {
